@@ -59,13 +59,14 @@ jobs:
 
       - name: Configure firmware image
         run: |
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/mediatek/mt7988a/bpi-r4 > .config
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/luci >> .config
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/snapshot-short >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/mediatek/mt7988a/bpi-r4 > .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/luci >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/snapshot-short >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/openssl >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/lte-5g-modem >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/community >> .config
+          curl -SL https://raw.githubusercontent.com/nextgen-networks/openwrt-builder/added-packages/configs/common/nextgen-networks >> .config
           sed -i '/CONFIG_PACKAGE_wpad-mbedtls=y/d' .config
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/openssl >> .config
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/lte-5g-modem >> .config
-          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/community >> .config
 
       - name: Run defconfig
         run: |
