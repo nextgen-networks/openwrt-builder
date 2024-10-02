@@ -7,7 +7,7 @@ on:
 
 env:
   REMOTE_REPOSITORY: openwrt/openwrt
-  REMOTE_BRANCH: openwrt-23.05
+  REMOTE_BRANCH: main
   RELEASE_PREFIX: Ramips_mt7621_u6lite
   DEVICE_CONFIG: configs/ramips/mt7621/u6-lite
   ROLE_CONFIG: configs/common/parents
@@ -61,17 +61,17 @@ jobs:
         run: |
           curl -SL "https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/$DEVICE_CONFIG" > .config
           curl -SL "https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/$ROLE_CONFIG" >> .config
+          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/snapshot-short >> .config
+          sed -i '/CONFIG_PACKAGE_wpad-mbedtls=y/d' .config
+          curl -SL https://raw.githubusercontent.com/danpawlik/openwrt-builder/master/configs/common/openssl >> .config
           make defconfig
 
       - name: Remove packages that are marked as modules
         run: |
           grep "=m" .config | grep -v 'CONFIG_PACKAGE_libustream-mbedtls=m' | while read -r line; do module=$(echo "$line" | cut -f1 -d'='); sed -i "s/^$line$/# $module is not set/" .config; done
 
-      - name: Download dependencies
-        run: make -j $(nproc) download
-
       - name: Build the firmware image
-        run: make -j $(nproc) world
+        run: make -j $(nproc) defconfig download world
 
       - name: Package output
         run: tar -cvf u6lite-images.tar bin/targets/ramips/mt7621
