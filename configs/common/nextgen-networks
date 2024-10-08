@@ -1,0 +1,65 @@
+# additional packages for nextgen-networks.de usage scenario
+
+#Base System
+# CONFIG_PACKAGE_apk-mbedtls is not set
+CONFIG_PACKAGE_block-mount=y
+
+#Administration
+# CONFIG_PACKAGE_btop is not set
+
+#Kernel Modules
+#Cryptographic API modules
+CONFIG_PACKAGE_kmod-crypto-kpp=y
+
+#I2C support
+CONFIG_PACKAGE_kmod-i2c-gpio=y
+
+#Network Devices
+CONFIG_PACKAGE_kmod-wwan=y
+
+#LuCi
+#1. Collections
+# CONFIG_PACKAGE_luci-ssl is not set
+CONFIG_PACKAGE_luci-ssl-openssl=y
+
+#2. Modules
+# CONFIG_PACKAGE_luci-compat is not set
+
+#3. Applications
+CONFIG_PACKAGE_luci-app-acl=y
+CONFIG_PACKAGE_luci-app-ddns=y
+CONFIG_PACKAGE_luci-app-mwan3=y
+# CONFIG_PACKAGE_luci-app-nut is not set
+CONFIG_PACKAGE_luci-app-statistics=y
+CONFIG_PACKAGE_luci-app-usteer=y
+
+#6. Libraries
+CONFIG_PACKAGE_luci-lib-ipkg=y
+
+#Network
+CONFIG_PACKAGE_socat=y
+
+#IP Addresses and Names
+CONFIG_PACKAGE_drill=y
+
+#Utilities
+CONFIG_PACKAGE_at=y
+CONFIG_PACKAGE_at=collectd-mod-sensors=y
+CONFIG_PACKAGE_ddns-scripts=y
+CONFIG_PACKAGE_i2c-tools=y
+CONFIG_PACKAGE_losetup=y
+CONFIG_PACKAGE_lpac=y
+# CONFIG_PACKAGE_mc is not set
+CONFIG_PACKAGE_mount-utils=y
+CONFIG_PACKAGE_xxd=y
+
+#Disc
+CONFIG_PACKAGE_cfdisk=y
+CONFIG_PACKAGE_lsblk=y
+
+#Filesystem
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_resize2fs=y
+
+#Shells
+# CONFIG_PACKAGE_bash is not set
