@@ -92,6 +92,7 @@ jobs:
           curl -SL https://raw.githubusercontent.com/${{ github.repository_owner }}/openwrt-builder/${{ env.RELEASE_BRANCH }}/configs/common/openssl >> .config
           curl -SL https://raw.githubusercontent.com/${{ github.repository_owner }}/openwrt-builder/${{ env.RELEASE_BRANCH }}/configs/common/lte-5g-modem >> .config
           curl -SL https://raw.githubusercontent.com/${{ github.repository_owner }}/openwrt-builder/${{ env.RELEASE_BRANCH }}/${{ env.ROLE_CONFIG }} >> .config
+          curl -SL https://raw.githubusercontent.com/${{ github.repository_owner }}/openwrt-builder/${{ env.RELEASE_BRANCH }}/configs/common/${{ github.repository_owner }} >> .config
 
       - name: Run defconfig
         run: |
